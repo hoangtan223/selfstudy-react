@@ -10,7 +10,6 @@ class Clock extends Component {
       minutes: 0,
       seconds: 0
     }
-    console.log('this.props', this.props)
   }
 
   componentWillMount() {
@@ -31,7 +30,6 @@ class Clock extends Component {
     const minutes = Math.floor((time/1000/60)%60);
     const hours = Math.floor((time/(1000*60*60))%24);
     const days = Math.floor(time/(1000*60*60*24));
-    console.log(days);
 
     this.setState({
       days: days,
@@ -39,10 +37,6 @@ class Clock extends Component {
       minutes: minutes,
       seconds: seconds
     })
-  }
-
-  componentWillMount() {
-    this.getTimeUntil(this.props.deadline);
   }
 
   render() {
