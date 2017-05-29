@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import {FormGroup, FormControl, InputGroup, Glyphicon} from 'react-bootstrap';
 import Profile from './profile.jsx';
+import Gallery from './gallery.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +26,6 @@ class App extends Component {
     .then(response => response.json())
     .then(json => {
       const artist = json.artists.items[0];
-      this.setState({artist});
 
       FETCH_URL = `${ALBUM_URL}/${artist.id}/top-tracks?country=US&`
       fetch(FETCH_URL, {
@@ -34,7 +34,7 @@ class App extends Component {
       .then(response => response.json())
       .then(json => {
         const { tracks } = json;
-        this.setState({tracks: tracks})
+        this.setState({ artist: artist, tracks: tracks})
       })
     });
   }
@@ -66,9 +66,9 @@ class App extends Component {
             <Profile
               artist={this.state.artist}
               />
-            <div className="Gallery">
-              Gallery
-            </div>
+            <Gallery
+              tracks={this.state.tracks}
+            />
           </div>
           : <div></div>
         }
